@@ -7,9 +7,18 @@ const FormComponent = () => {
   const [password, setPassword] = useState("");
   const [repassword, setRePassword] = useState("");
 
+  const [errorUserName, setErrorUserName] = useState("");
+  const [errorEmail, setErrorEmail] = useState("");
+  const [errorPassword, setErrorPassword] = useState("");
+  const [errorRePassword, setErrorRePassword] = useState("");
+
+  const validateForm = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="container">
-      <form className="form">
+      <form className="form" onSubmit={validateForm}>
         <h2>Form ลงทะเบียน</h2>
         <div className="form-control">
           <labal>ชื่อผู้ใช้</labal>
@@ -18,7 +27,7 @@ const FormComponent = () => {
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
           />
-          <small>error message</small>
+          <small>{errorUserName}</small>
         </div>
         <div className="form-control">
           <labal>Email</labal>
@@ -27,7 +36,7 @@ const FormComponent = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <small>error message</small>
+          <small>{errorEmail}</small>
         </div>
         <div className="form-control">
           <labal>รหัสผ่าน</labal>
@@ -36,7 +45,7 @@ const FormComponent = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <small>error message</small>
+          <small>{errorPassword}</small>
         </div>
         <div className="form-control">
           <labal>ยืนยันรหัสผ่าน</labal>
@@ -45,7 +54,7 @@ const FormComponent = () => {
             value={repassword}
             onChange={(e) => setRePassword(e.target.value)}
           />
-          <small>error message</small>
+          <small>{errorRePassword}</small>
         </div>
         <button type="submit">ลงทะเบียน</button>
       </form>
