@@ -14,6 +14,8 @@ const FormComponent = () => {
 
   const [userNameColor, setUserNameColor] = useState("");
   const [emailColor, setEmailColor] = useState("");
+  const [passwordColor, setPasswordColor] = useState("");
+  const [repasswordColor, setRePasswordColor] = useState("");
 
   const validateForm = (e) => {
     e.preventDefault();
@@ -32,6 +34,22 @@ const FormComponent = () => {
     } else {
       setErrorEmail("อีเมลควรมีเครื่องหมาย@");
       setEmailColor("red");
+    }
+
+    if (password.length > 8) {
+      setErrorPassword("");
+      setPasswordColor("green");
+    } else {
+      setErrorPassword("กรุณาป้อนรหัสผ่านมากกว่า8ตัวอักษร");
+      setPasswordColor("red");
+    }
+
+    if (repassword != "" && repassword === password) {
+      setErrorRePassword("");
+      setRePasswordColor("green");
+    } else {
+      setErrorRePassword("รหัสผ่านไม่ตรงกัน");
+      setRePasswordColor("red");
     }
   };
 
@@ -65,8 +83,9 @@ const FormComponent = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            style={{ borderColor: passwordColor }}
           />
-          <small>{errorPassword}</small>
+          <small style={{ color: passwordColor }}>{errorPassword}</small>
         </div>
         <div className="form-control">
           <labal>ยืนยันรหัสผ่าน</labal>
@@ -74,8 +93,9 @@ const FormComponent = () => {
             type="password"
             value={repassword}
             onChange={(e) => setRePassword(e.target.value)}
+            style={{ borderColor: repasswordColor }}
           />
-          <small>{errorRePassword}</small>
+          <small style={{ color: repasswordColor }}>{errorRePassword}</small>
         </div>
         <button type="submit">ลงทะเบียน</button>
       </form>
